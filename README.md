@@ -20,6 +20,7 @@ In this project, you'll work with data that could have come from a real-world we
 This shows one of the valuable roles of a database server in a real-world application: it's a point where different pieces of software (a web app and a reporting tool, for instance) can share data.
 
 ![Just one of many queries Udacity uses for logs analysis](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57bf410d_pasted-image-at-2016-08-24-18-22/pasted-image-at-2016-08-24-18-22.png)
+
 Just one of many queries Udacity uses for logs analysis.
 
 ## Review Your Skill
