@@ -5,8 +5,12 @@ import psycopg2
 
 
 def main():
-  
+  conn = psycopg2.connect("dbname=news")
+  cursor = conn.cursor()
 
+  
+  conn.close()
+  
 if __name__ == "__main__":
     # execute only if run as a script
     main()
