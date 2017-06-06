@@ -137,7 +137,9 @@ drop table log;
 drop table articles;
 drop table authors;
 ```
+
 Then in the shell, re-import the data:
+
 ```
 psql -d news -f newsdata.sql
 ```
@@ -149,25 +151,27 @@ Suppose we wanted to print out each article's title and author name.
 
 Looking at the schema for articles (with \d articles) we can see there's an author and title column. But the author column doesn't have names in it — just numbers. To see this in your database, run:
 
-```
+```sql
 select author from articles;
 ```
 
 But the authors table has a name column, and a numeric id column. To see this, run:
 
-```
+```sql
 select * from authors;
 ```
 
 Those numeric id values match up with the articles.author column. And that means we can connect the two tables with a join:
 
-```
+```sql
 select title, name
 from articles join authors
 on article.author = authors.id;
 ```
+
 or:
-```
+
+```sql
 select title, name
 from articles, authors
 where articles.author = authors.id;
