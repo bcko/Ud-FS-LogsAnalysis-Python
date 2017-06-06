@@ -1,6 +1,7 @@
 # Logs-Analysis
 
-## Scenario
+
+# About the logs analysis project
 You've been hired onto a team working on a newspaper site. The user-facing newspaper site frontend itself, and the database behind it, are already built and running. You've been asked to build an internal reporting tool that will use information from the database to discover what kind of articles the site's readers like.
 
 The database contains newspaper articles, as well as the web server log for the site. The log has a database row for each time a reader loaded a web page. Using that information, your code will answer questions about the site's user activity.
@@ -18,3 +19,21 @@ In this project, you'll work with data that could have come from a real-world we
 
 This shows one of the valuable roles of a database server in a real-world application: it's a point where different pieces of software (a web app and a reporting tool, for instance) can share data.
 
+
+# Review Your Skill
+Completing this project will exercise your database skills. Here are some portions of the Relational Databases course that you might want to review:
+
+* Joining tables
+* The select ...where statement
+* Select clauses
+* Writing code with DB-API
+* Views
+
+## The PostgreSQL documentation
+In this project, you'll be using a PostgreSQL database. If you'd like to know a lot more about the kinds of queries that you can use in this dialect of SQL, check out the PostgreSQL documentation. It's a lot of detail, but it spells out all the many things the database can do.
+
+Here are some parts that may be particularly useful to refer to:
+
+* The select statement
+* SQL string functions
+* Aggregate functions
