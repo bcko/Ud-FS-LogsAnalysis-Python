@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 
-# psycopg is the PostgreSQL adapter for the Python programming language. 
+'''
+psycopg is the PostgreSQL adapter for the Python programming language. 
+Some database code and comments are adapted from the psycopg documentation(http://initd.org/psycopg/)
+'''
 import psycopg2 
 
-
 def main():
+  
+  # Connect to an existing database
   conn = psycopg2.connect("dbname=news")
-  cursor = conn.cursor()
+  
+  
+  cur = conn.cursor()
 
   
   conn.close()
