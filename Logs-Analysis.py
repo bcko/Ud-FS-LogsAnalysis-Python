@@ -31,8 +31,10 @@ def main():
   
   q2_SQL = """
   SELECT authors.name
-  FROM
-  WHERE
+  FROM authors, articles, log
+  WHERE articles.author = authors.id
+      AND log.path = '/article/' || articles.slug
+  GROUP BY 
   """
   
   question3 = """
