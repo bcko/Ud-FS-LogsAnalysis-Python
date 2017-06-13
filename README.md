@@ -42,14 +42,6 @@ ORDER BY author_info.name;
 ```
 
 ```sql
-CREATE VIEW author_view AS
-SELECT article_view.name, SUM(article_view.view) AS author_view
-FROM article_view
-GROUP BY article_view.name
-ORDER BY author_view DESC;
-```
-
-```sql
 CREATE VIEW total_view AS
 SELECT date(time), COUNT(*) AS views
 FROM log 
@@ -72,7 +64,6 @@ FROM total_view, error_view
 WHERE total_view.date = error_view.date
 ORDER BY total_view.date;
 ```
-
 
 ### Drop Views
 ```sql
