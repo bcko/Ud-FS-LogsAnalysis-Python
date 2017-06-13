@@ -1,5 +1,13 @@
+# Logs Analysis Project
 
+## Requirements
+* Python 3.5.3
+* psycopg2
+* Postgresql 9.6
 
+## How to run
+
+### Create Views
 ```sql
 CREATE VIEW author_info AS
 SELECT authors.name, articles.title, articles.slug
