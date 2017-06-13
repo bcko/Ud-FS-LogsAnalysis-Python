@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
 
-'''
+"""
 psycopg is the PostgreSQL adapter for the Python programming language. 
 Some database code and comments are adapted from the psycopg documentation(http://initd.org/psycopg/)
-'''
+"""
 import psycopg2 
 
 def main():  
   
-  question1 = """ 
+  question1 = ''' 
   1. What are the most popular three articles of all time?
   Which articles have been accessed the most?
   Present this information as a sorted list with the most popular article at the top
-  """
-
+  '''
+  
   q1_SQL = """ 
   SELECT articles.title, COUNT(log.path) as num_access 
   FROM articles, log
-  WHERE log.path = '/article/' || articles.slug
+  WHERE log.path = concat('/article/', articles.slug)
   GROUP BY articles.title
   ORDER BY num_access DESC
   LIMIT 3;
@@ -41,8 +41,23 @@ def main():
   3. On which days did more than 1% of requests lead to errors?
   The log table includes a column status that indicates the HTTP status code that the news site sent to the user's browser.
   """
+
+  SELECT Total.date, (Error.ViewCount*1.0/Total.ViewCount) as ErrorPercentage 
+  FROM
+    (SELECT date(time), COUNT(*) as ViewCount 
+    FROM log 
+    GROUP BY date(time)
+    ORDER BY date(time)) as Total
+    ,(SELECT date(time), COUNT(*) as ViewCount
+    FROM log WHERE status = '404 NOT FOUND' 
+    GROUP BY date(time) 
+    ORDER BY date(time)) as Error
+  WHERE Total.date = Error.date;
   
   q3_SQL = """
+  SELECT
+  FROM
+  WHERE
   
   """
 
