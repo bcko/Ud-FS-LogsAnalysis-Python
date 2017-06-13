@@ -26,9 +26,24 @@ ORDER BY authors.name;
 ```
 
 ```sql
-CREATE VIEW view_per_path AS
+CREATE VIEW path_view AS
 SELECT path, COUNT(*) as view
 FROM log
 GROUP BY path
 ORDER BY path;
+```
+
+```sql
+CREATE VIEW article_view AS
+SELECT author_info.name, author_info.title, path_view.view
+FROM author_info, path_view
+WHERE path_view.path = CONCAT('/article/', author_info.slug)
+ORDER BY author_info.name;
+```
+
+
+
+### Drop Views
+```sql
+DROP VIEW 
 ```
