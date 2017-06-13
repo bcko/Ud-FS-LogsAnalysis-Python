@@ -15,12 +15,10 @@ def main():
   '''
   
   q1_SQL = """ 
-  SELECT articles.title, COUNT(log.path) as num_access 
-  FROM articles, log
-  WHERE log.path = concat('/article/', articles.slug)
-  GROUP BY articles.title
-  ORDER BY num_access DESC
-  LIMIT 3;
+    SELECT * 
+    FROM article_view 
+    ORDER BY article_view.view DESC
+    LIMIT 3;
   """
   
   question2 = """
@@ -30,11 +28,11 @@ def main():
   """
   
   q2_SQL = """
-  SELECT authors.name
-  FROM authors, articles, log
-  WHERE articles.author = authors.id
-      AND log.path = '/article/' || articles.slug
-  GROUP BY 
+    SELECT article_view.name, SUM(article_view.view) AS author_view
+    FROM article_view
+    GROUP BY article_view.name
+    ORDER BY author_view DESC
+    LIMIT 1;
   """
   
   question3 = """
@@ -42,23 +40,12 @@ def main():
   The log table includes a column status that indicates the HTTP status code that the news site sent to the user's browser.
   """
 
-  SELECT Total.date, (Error.ViewCount*1.0/Total.ViewCount) as ErrorPercentage 
-  FROM
-    (SELECT date(time), COUNT(*) as ViewCount 
-    FROM log 
-    GROUP BY date(time)
-    ORDER BY date(time)) as Total
-    ,(SELECT date(time), COUNT(*) as ViewCount
-    FROM log WHERE status = '404 NOT FOUND' 
-    GROUP BY date(time) 
-    ORDER BY date(time)) as Error
-  WHERE Total.date = Error.date;
   
   q3_SQL = """
-  SELECT
-  FROM
-  WHERE
-  
+    SELECT *
+    FROM error_rate
+    WHERE error_rate.percentage > 1
+    ORDER BY error_rate.percentage DESC;
   """
 
   
