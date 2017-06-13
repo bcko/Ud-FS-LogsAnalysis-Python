@@ -8,26 +8,14 @@ import psycopg2
 
 def main():  
   
-  question1 = ''' 
-  1. What are the most popular three articles of all time?
-  Which articles have been accessed the most?
-  Present this information as a sorted list with the most popular article at the top
-  '''
-  
-  q1_SQL = """ 
+  sql_popular_articles = """ 
     SELECT * 
     FROM article_view 
     ORDER BY article_view.view DESC
     LIMIT 3;
   """
-  
-  question2 = """
-  2. Who are the most popular article authors of all time?
-  That is, when you sum up all of the articles each author has written, which authors get the most page views?
-  Present this as a sorted list with the most popular author at the top.
-  """
-  
-  q2_SQL = """
+
+  sql_popular_authors = """
     SELECT article_view.name, SUM(article_view.view) AS author_view
     FROM article_view
     GROUP BY article_view.name
@@ -35,37 +23,23 @@ def main():
     LIMIT 1;
   """
   
-  question3 = """
-  3. On which days did more than 1% of requests lead to errors?
-  The log table includes a column status that indicates the HTTP status code that the news site sent to the user's browser.
-  """
-
-  
-  q3_SQL = """
+  sql_more_than_one_percent_errors = """
     SELECT *
     FROM error_rate
     WHERE error_rate.percentage > 1
     ORDER BY error_rate.percentage DESC;
   """
-
-  
-  
   
   # Connect to an existing database
   conn = psycopg2.connect("dbname=news")
   
   # Open a cursor to perform database operations
   cur = conn.cursor()
+  
+  
 
   
-  
-  print(question1)
-  
-  
-  print(question2)
-  
-  
-  print(question3) 
+ 
 
   
   
