@@ -27,7 +27,7 @@ ORDER BY authors.name;
 
 ```sql
 CREATE VIEW path_view AS
-SELECT path, COUNT(*) as view
+SELECT path, COUNT(*) AS view
 FROM log
 GROUP BY path
 ORDER BY path;
@@ -41,6 +41,37 @@ WHERE path_view.path = CONCAT('/article/', author_info.slug)
 ORDER BY author_info.name;
 ```
 
+```sql
+CREATE VIEW author_view AS
+SELECT article_view.name, SUM(article_view.view) AS author_view
+FROM article_view
+GROUP BY article_view.name
+ORDER BY author_view DESC;
+```
+
+```sql
+CREATE VIEW total_view AS
+SELECT date(time), COUNT(*) AS views
+FROM log 
+GROUP BY date(time)
+ORDER BY date(time);
+```
+
+```sql
+CREATE VIEW error_view AS
+SELECT date(time), COUNT(*) AS errors
+FROM log WHERE status = '404 NOT FOUND' 
+GROUP BY date(time) 
+ORDER BY date(time);
+```
+
+```sql
+CREATE VIEW error_rate AS
+SELECT total_view.date, (100.0*error_view.errors/total_view.views) AS percentage
+FROM total_view, error_view
+WHERE total_view.date = error_view.date
+ORDER BY total_view.date;
+```
 
 
 ### Drop Views
