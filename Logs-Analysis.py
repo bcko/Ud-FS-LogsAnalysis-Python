@@ -32,8 +32,7 @@ def main():
     SELECT article_view.name, SUM(article_view.view) AS author_view
     FROM article_view
     GROUP BY article_view.name
-    ORDER BY author_view DESC
-    LIMIT 1;
+    ORDER BY author_view DESC;
   """
   cur.execute(sql_popular_authors)
   print("Most popular authors:")
