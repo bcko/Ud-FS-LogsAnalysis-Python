@@ -10,4 +10,4 @@ Most popular authors:
     Markoff Chaney - 84557 views
 ----------------------------------------------------------------------
 Days with more than 1% errors:
-    July 17, 2016 - 2.2804281181089657% errors
+    July 17, 2016 - 2.26% errors
