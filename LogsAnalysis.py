@@ -6,14 +6,14 @@ import psycopg2
 def main():
     # Connect to an existing database
     conn = psycopg2.connect("dbname=news")
-  
+
     # Open a cursor to perform database operations
     cur = conn.cursor()
-  
+
     # Question 1
-    sql_popular_articles = """ 
+    sql_popular_articles = """
       SELECT article_view.title, article_view.view
-      FROM article_view 
+      FROM article_view
       ORDER BY article_view.view DESC
       LIMIT 3;
     """
@@ -23,7 +23,6 @@ def main():
         print("    {} - {} views".format(title, view))
     print("-" * 70)
 
-  
     # Question 2
     sql_popular_authors = """
     SELECT article_view.name, SUM(article_view.view) AS author_view
@@ -36,7 +35,7 @@ def main():
     for (name, view) in cur.fetchall():
         print("    {} - {} views".format(name, view))
     print("-" * 70)
-  
+
     # Question 3
     sql_more_than_one_percent_errors = """
     SELECT *
@@ -49,11 +48,10 @@ def main():
     for (date, percentage) in cur.fetchall():
         print("    {} - {}% errors".format(date, percentage))
     print("-" * 70)
-  
+
     # Close communication with the database
     cur.close()
     conn.close()
-  
+
 if __name__ == "__main__":
-    # execute only if run as a script
     main()
