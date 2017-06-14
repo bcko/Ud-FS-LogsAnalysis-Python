@@ -65,7 +65,3 @@ WHERE total_view.date = error_view.date
 ORDER BY total_view.date;
 ```
 
-### Drop Views
-```sql
-DROP VIEW 
-```
