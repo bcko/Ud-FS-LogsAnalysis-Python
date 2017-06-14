@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
 
-"""
-psycopg is the PostgreSQL adapter for the Python programming language. 
-Some database code and comments are adapted from the psycopg documentation(http://initd.org/psycopg/)
-"""
 import psycopg2 
 
 def main():  
