@@ -16,6 +16,17 @@
 
 ## How to run
 
+* load the data onto the database
+```sql
+psql -d news -f newsdata.sql
+```
+* connect to the database
+```sql
+psql -d news
+```
+* create views
+* python3 LogsAnalysis.py
+
 ### Create Views
 ```sql
 CREATE VIEW author_info AS
