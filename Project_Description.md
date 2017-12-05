@@ -46,63 +46,66 @@ To start on this project, you'll need database software (provided by a Linux vir
 ### The virtual machine
 This project makes use of the same Linux-based virtual machine (VM) as the preceding lessons.
 
-If you skipped those lessons and came right to this project, that's OK! However, you will need to go back to these instructions to install the virtual machine. This will give you the PostgreSQL database and support software needed for this project. If you have used an older version of this VM, you may need to install it into a new directory.
+If you skipped those lessons and came right to this project, that's OK! However, you will need to go back to [these instructions to install the virtual machine](https://classroom.udacity.com/nanodegrees/nd004/parts/8d3e23e1-9ab6-47eb-b4f3-d5dc7ef27bf0/modules/bc51d967-cb21-46f4-90ea-caf73439dc59/lessons/5475ecd6-cfdb-4418-85a2-f2583074c08d/concepts/14c72fe3-e3fe-4959-9c4b-467cf5b7c3a0). This will give you the PostgreSQL database and support software needed for this project. If you have used an older version of this VM, you may need to install it into a new directory.
 
-If you need to bring the virtual machine back online (with vagrant up), do so now. Then log into it with vagrant ssh.
-_Successfully logged into the virtual machine._
+If you need to bring the virtual machine back online (with `vagrant up`), do so now. Then log into it with `vagrant ssh`.
+![Successfully logged into the virtual machine.](https://d17h27t6h515a5.cloudfront.net/topher/2017/April/58fa90dd_screen-shot-2017-04-21-at-16.06.30/screen-shot-2017-04-21-at-16.06.30.png)
 Successfully logged into the virtual machine.
 
 ### Download the data
-Next, download the data here. You will need to unzip this file after downloading it. The file inside is called newsdata.sql. Put this file into the vagrant directory, which is shared with your virtual machine.
+Next, [download the data here](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip). You will need to unzip this file after downloading it. The file inside is called `newsdata.sql`. Put this file into the `vagrant` directory, which is shared with your virtual machine.
 
-To build the reporting tool, you'll need to load the site's data into your local database. Review how to use the psql command in this lesson.
+To build the reporting tool, you'll need to load the site's data into your local database. [Review how to use the `psql` command in this lesson](https://classroom.udacity.com/nanodegrees/nd004/parts/8d3e23e1-9ab6-47eb-b4f3-d5dc7ef27bf0/modules/bc51d967-cb21-46f4-90ea-caf73439dc59/lessons/96869cfc-c67e-4a6c-9df2-9f93267b7be5/concepts/0b4079f5-6e64-4dd8-aee9-5c3a0db39840).
 
-To load the data, use the command psql -d news -f newsdata.sql.
+To load the data, `cd` into the vagrant directory and use the command `psql -d news -f newsdata.sql`.
 Here's what this command does:
 
-* psql — the PostgreSQL command line program
-* -d news — connect to the database named news which has been set up for you
-* -f newsdata.sql — run the SQL statements in the file newsdata.sql
+* `psql` — the PostgreSQL command line program
+* `-d news` — connect to the database named news which has been set up for you
+* `-f newsdata.sql` — run the SQL statements in the file newsdata.sql
+
 Running this command will connect to your installed database server and execute the SQL commands in the downloaded file, creating tables and populating them with data.
 
 #### Getting an error?
 If this command gives an error message, such as —
-psql: FATAL: database "news" does not exist
-psql: could not connect to server: Connection refused
-— this means the database server is not running or is not set up correctly. This can happen if you have an older version of the VM configuration from before this project was added. To continue, download the virtual machine configuration into a fresh new directory and start it from there.
+- `psql: FATAL: database "news" does not exist`
+- `psql: could not connect to server: Connection refused`
+— this means the database server is not running or is not set up correctly. This can happen if you have an older version of the VM configuration from before this project was added. To continue, [download the virtual machine configuration](https://classroom.udacity.com/nanodegrees/nd004/parts/8d3e23e1-9ab6-47eb-b4f3-d5dc7ef27bf0/modules/bc51d967-cb21-46f4-90ea-caf73439dc59/lessons/5475ecd6-cfdb-4418-85a2-f2583074c08d/concepts/14c72fe3-e3fe-4959-9c4b-467cf5b7c3a0) into a fresh new directory and start it from there.
 
 ### Explore the data
-Once you have the data loaded into your database, connect to your database using psql -d news and explore the tables using the \dt and \d table commands and select statements.
+Once you have the data loaded into your database, connect to your database using `psql -d news` and explore the tables using the `\dt` and `\d table` commands and `select` statements.
 
-* \dt — display tables — lists the tables that are available in the database.
-* \d table — (replace table with the name of a table) — shows the database schema for that particular table.
+* `\dt` — display tables — lists the tables that are available in the database.
+* `\d table` — (replace table with the name of a table) — shows the database schema for that particular table.
+
 Get a sense for what sort of information is in each column of these tables.
 
 The database includes three tables:
 
-* The authors table includes information about the authors of articles.
-* The articles table includes the articles themselves.
-* The log table includes one entry for each time a user has accessed the site.
+* The `authors` table includes information about the authors of articles.
+* The `articles` table includes the articles themselves.
+* The `log` table includes one entry for each time a user has accessed the site.
+
 As you explore the data, you may find it useful to take notes! Don't try to memorize all the columns. Instead, write down a description of the column names and what kind of values are found in those columns.
 
 
 ## Your assignment: Build it!
-Your task is to create a reporting tool that prints out reports (in plain text) based on the data in the database. This reporting tool is a Python program using the psycopg2 module to connect to the database.
+Your task is to create a reporting tool that prints out reports (in plain text) based on the data in the database. This reporting tool is a Python program using the `psycopg2` module to connect to the database.
 
 ### So what are we reporting, anyway?
 Here are the questions the reporting tool should answer. The example answers given aren't the right ones, though!
 
-1. What are the most popular three articles of all time? Which articles have been accessed the most? Present this information as a sorted list with the most popular article at the top.
+** 1. What are the most popular three articles of all time?** Which articles have been accessed the most? Present this information as a sorted list with the most popular article at the top.
 
-Example:
+**Example**:
 
 * "Princess Shellfish Marries Prince Handsome" — 1201 views
 * "Baltimore Ravens Defeat Rhode Island Shoggoths" — 915 views
 * "Political Scandal Ends In Political Scandal" — 553 views
 
-2. Who are the most popular article authors of all time? That is, when you sum up all of the articles each author has written, which authors get the most page views? Present this as a sorted list with the most popular author at the top.
+**2. Who are the most popular article authors of all time?** That is, when you sum up all of the articles each author has written, which authors get the most page views? Present this as a sorted list with the most popular author at the top.
 
-Example:
+**Example:**
 
 * Ursula La Multa — 2304 views
 * Rudolf von Treppenwitz — 1985 views
@@ -111,26 +114,26 @@ Example:
 
 3. On which days did more than 1% of requests lead to errors? The log table includes a column status that indicates the HTTP status code that the news site sent to the user's browser. (Refer back to this lesson if you want to review the idea of HTTP status codes.)
 
-Example:
+**Example:**
 
 * July 29, 2016 — 2.5% errors
 
 ### Good coding practices
 #### SQL style
-Each one of these questions can be answered with a single database query. Your code should get the database to do the heavy lifting by using joins, aggregations, and the where clause to extract just the information you need, doing minimal "post-processing" in the Python code itself.
+Each one of these questions can be answered with a single database query. Your code should get the database to do the heavy lifting by using joins, aggregations, and the `where` clause to extract just the information you need, doing minimal "post-processing" in the Python code itself.
 
-In building this tool, you may find it useful to add views to the database. You are allowed and encouraged to do this! However, if you create views, make sure to put the create view commands you used into your lab's README file so your reviewer will know how to recreate them.
+In building this tool, you may find it useful to add views to the database. You are allowed and encouraged to do this! However, if you create views, make sure to put the **create view** commands you used into your lab's README file so your reviewer will know how to recreate them.
 
 #### Python code quality
-Your code should be written with good Python style. The PEP8 style guide is an excellent standard to follow. You can do a quick check using the pep8 command-line tool.
+Your code should be written with good Python style. The [PEP8 style guide](https://www.python.org/dev/peps/pep-0008/) is an excellent standard to follow. You can do a quick check using the `pep8` command-line tool.
 
 
 ## Frequently asked questions
 
 ### Q: I modified my database. Can I undo it?
-If you'd like to revert the news database to its original form, you can do that by dropping each of the tables, then re-importing the data from the newsdata.sql file.
+If you'd like to revert the `news` database to its original form, you can do that by dropping each of the tables, then re-importing the data from the `newsdata.sql` file.
 
-In psql:
+In `psql`:
 
 ```sql
 drop table log;
@@ -140,7 +143,7 @@ drop table authors;
 
 Then in the shell, re-import the data:
 
-```
+```bash
 psql -d news -f newsdata.sql
 ```
 
@@ -149,19 +152,19 @@ One of the best ways to build complex queries is by starting with smaller pieces
 
 Suppose we wanted to print out each article's title and author name.
 
-Looking at the schema for articles (with \d articles) we can see there's an author and title column. But the author column doesn't have names in it — just numbers. To see this in your database, run:
+Looking at the schema for `articles` (with `\d articles`) we can see there's an author and title column. But the author column doesn't have names in it — just numbers. To see this in your database, run:
 
 ```sql
 select author from articles;
 ```
 
-But the authors table has a name column, and a numeric id column. To see this, run:
+But the `authors` table has a `name` column, and a numeric `id` column. To see this, run:
 
 ```sql
 select * from authors;
 ```
 
-Those numeric id values match up with the articles.author column. And that means we can connect the two tables with a join:
+Those numeric id values match up with the `articles.author` column. And that means we can connect the two tables with a join:
 
 ```sql
 select title, name
@@ -176,4 +179,4 @@ select title, name
 from articles, authors
 where articles.author = authors.id;
 ```
-Try these queries on your news database! Look for other relationships that can work with join.
+Try these queries on your `news` database! Look for other relationships that can work with `join`.
